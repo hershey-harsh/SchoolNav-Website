@@ -172,3 +172,37 @@ course_data = {
         }
     }
 }
+
+from helpers.course_data import course_data
+
+grade_level = 11
+
+english = {}
+math = {}
+science = {}
+social_studies = {}
+world_language = {}
+
+for course_category, courses in course_data.items():
+    for course_name, course_info in courses.items():
+        if "Grade_Level" in course_info:
+            course_grades = course_info["Grade_Level"].split("/")
+            if str(grade_level) in course_grades or str(grade_level - 1) in course_grades:
+                if course_category == "English":
+                    english[course_name] = course_info
+                elif course_category == "Math":
+                    math[course_name] = course_info
+                elif course_category == "Science":
+                    science[course_name] = course_info
+                elif course_category == "Social Studies":
+                    social_studies[course_name] = course_info
+                elif course_category == "World Language":
+                    world_language[course_name] = course_info
+
+print("English courses for grade", grade_level, "and below:", list(english.keys()))
+print("Math courses for grade", grade_level, "and below:", list(math.keys()))
+print("Science courses for grade", grade_level, "and below:", list(science.keys()))
+print("Social Studies courses for grade", grade_level, "and below:", list(social_studies.keys()))
+print("World Language courses for grade", grade_level, "and below:", list(world_language.keys()))
+
+# Helper Code to create the Dictionary
